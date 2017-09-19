@@ -12,6 +12,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Dialog.ModalExclusionType;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import ren.junsong.util.Calculator;
+
 import java.awt.Component;
 import java.awt.Window.Type;
 import javax.swing.JCheckBox;
@@ -89,6 +92,18 @@ public class UIFrame extends JFrame {
 		chckbxNewCheckBox.setFont(new Font(ConstantForUI.FONT, Font.PLAIN,ConstantForUI.FONT_H2));
 		
 		JCheckBox checkBox = new JCheckBox("\u6E29\u5EA6");
+		checkBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			if(checkBox.isSelected()){
+				System.out.println("is on");
+				textField_1.setEnabled(true);
+			}else{
+				System.out.println("is out");
+				textField_1.setEnabled(false);
+				textField_1.setText(null);
+			}
+			}
+		});
 		checkBox.setFont(ConstantForUI.DFONT);
 		
 		JCheckBox checkBox_1 = new JCheckBox("\u6BD4\u7113");
@@ -103,12 +118,19 @@ public class UIFrame extends JFrame {
 		JCheckBox checkBox_4 = new JCheckBox("\u5E72\u5EA6");
 		checkBox_4.setFont(ConstantForUI.DFONT);
 		
-		JButton btnNewButton = new JButton("\u8BA1\u7B97");
-		btnNewButton.setForeground(Color.BLACK);
-		btnNewButton.setFont(ConstantForUI.DFONT);
 		
 		JEditorPane editorPane = new JEditorPane();
 		editorPane.setBackground(SystemColor.menu);
+		JButton btnNewButton = new JButton("\u8BA1\u7B97");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			Calculator cal=new Calculator(Double.parseDouble(textField.getText()),Double.parseDouble(textField_1.getText()));
+			editorPane.setText(Double.toString(cal.result()));
+			}
+		});
+		btnNewButton.setForeground(Color.BLACK);
+		btnNewButton.setFont(ConstantForUI.DFONT);
+		
 		
 		textField = new JTextField();
 		textField.setBackground(SystemColor.menu);
