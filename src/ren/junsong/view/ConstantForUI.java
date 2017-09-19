@@ -19,4 +19,5 @@ public class ConstantForUI {
 	public static final Font DFONT=new Font(ConstantForUI.FONT, Font.PLAIN,ConstantForUI.FONT_H2);
 	public static final Color FONT_COLOR=Color.black;
 	public static final Color FRAME_COLOR=new Color(234,234,234);
+	public static final Color FRAME_COLOR1=new Color(240,240,240);
 }
