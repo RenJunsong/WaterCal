@@ -32,16 +32,14 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class UIFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField text1;
+	private JTextField text2;
 
 	/**
 	 * Launch the application.
@@ -63,179 +61,178 @@ public class UIFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public UIFrame() {
-		setBackground(ConstantForUI.FRAME_COLOR);
+		setBackground(ConstantForUI.BACK_COLOR);
 		setResizable(false);
 		setTitle("Water vapor property calculator");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(ConstantForUI.FRAME_X,ConstantForUI.FRAME_Y,ConstantForUI.FRAME_WIDTH,ConstantForUI.FRAME_HEIGHT);
+		setBounds(ConstantForUI.FRAME_X,ConstantForUI.FRAME_Y,530,720);
 		contentPane = new JPanel();
-		contentPane.setBackground(ConstantForUI.FRAME_COLOR);
+		contentPane.setBackground(ConstantForUI.BACK_COLOR);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblNewLabel = new JLabel("\u6807\u51C6");
-		lblNewLabel.setFont(new Font(ConstantForUI.FONT, Font.PLAIN,ConstantForUI.FONT_H1));
-		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("\u538B\u529B");
-		chckbxNewCheckBox.addActionListener(new ActionListener() {
+		JCheckBox checkBox1 = new JCheckBox("\u538B\u529B");
+		checkBox1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				checkBox1.setBackground(ConstantForUI.ACT_COLOR);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(!checkBox1.isSelected()){
+					checkBox1.setBackground(ConstantForUI.COM_COLOR);
+				}
+			}
+		});
+		checkBox1.setBounds(34, 63, 100, 40);
+		checkBox1.setHorizontalAlignment(SwingConstants.CENTER);
+		checkBox1.setBackground(ConstantForUI.COM_COLOR);
+		checkBox1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			if(chckbxNewCheckBox.isSelected()){
+			if(checkBox1.isSelected()){
 				System.out.println("is on");
-				textField.setEnabled(true);
+				text1.setEnabled(true);
 			}else{
 				System.out.println("is out");
-				textField.setEnabled(false);
-				textField.setText(null);
+				text1.setEnabled(false);
+				text1.setText(null);
 			}
 			}
 		});
-		chckbxNewCheckBox.setFont(new Font(ConstantForUI.FONT, Font.PLAIN,ConstantForUI.FONT_H2));
+		checkBox1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
 		
-		JCheckBox checkBox = new JCheckBox("\u6E29\u5EA6");
-		checkBox.addActionListener(new ActionListener() {
+		JCheckBox checkBox2 = new JCheckBox("\u6E29\u5EA6");
+		checkBox2.setBounds(152, 63, 100, 41);
+		checkBox2.setHorizontalAlignment(SwingConstants.CENTER);
+		checkBox2.setBackground(ConstantForUI.COM_COLOR);
+		checkBox2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				checkBox2.setBackground(ConstantForUI.ACT_COLOR);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(!checkBox2.isSelected()){
+					checkBox2.setBackground(ConstantForUI.COM_COLOR);
+				}
+			}
+		});
+		checkBox2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			if(checkBox.isSelected()){
+			if(checkBox2.isSelected()){
 				System.out.println("is on");
-				textField_1.setEnabled(true);
+				text2.setEnabled(true);
 			}else{
 				System.out.println("is out");
-				textField_1.setEnabled(false);
-				textField_1.setText(null);
+				text2.setEnabled(false);
+				text2.setText(null);
 			}
 			}
 		});
-		checkBox.setFont(ConstantForUI.DFONT);
+		checkBox2.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
 		
-		JCheckBox checkBox_1 = new JCheckBox("\u6BD4\u7113");
-		checkBox_1.setFont(ConstantForUI.DFONT);
+		JCheckBox checkBox3 = new JCheckBox("\u6BD4\u7113");
+		checkBox3.setBounds(270, 65, 100, 40);
+		checkBox3.setHorizontalAlignment(SwingConstants.CENTER);
+		checkBox3.setBackground(ConstantForUI.COM_COLOR);
+		checkBox3.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
 		
-		JCheckBox checkBox_2 = new JCheckBox("\u6BD4\u71B5");
-		checkBox_2.setFont(ConstantForUI.DFONT);
+		JCheckBox checkBox4 = new JCheckBox("\u6BD4\u71B5");
+		checkBox4.setBounds(388, 65, 100, 40);
+		checkBox4.setHorizontalAlignment(SwingConstants.CENTER);
+		checkBox4.setBackground(ConstantForUI.COM_COLOR);
+		checkBox4.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
 		
-		JCheckBox checkBox_3 = new JCheckBox("\u6BD4\u5BB9");
-		checkBox_3.setFont(ConstantForUI.DFONT);
+		JCheckBox checkBox5 = new JCheckBox("\u6BD4\u5BB9");
+		checkBox5.setBounds(34, 143, 100, 40);
+		checkBox5.setHorizontalAlignment(SwingConstants.CENTER);
+		checkBox5.setBackground(ConstantForUI.COM_COLOR);
+		checkBox5.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
 		
-		JCheckBox checkBox_4 = new JCheckBox("\u5E72\u5EA6");
-		checkBox_4.setFont(ConstantForUI.DFONT);
+		JCheckBox checkBox6 = new JCheckBox("\u5E72\u5EA6");
+		checkBox6.setBounds(152, 143, 100, 40);
+		checkBox6.setHorizontalAlignment(SwingConstants.CENTER);
+		checkBox6.setBackground(ConstantForUI.COM_COLOR);
+		checkBox6.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
 		
 		
-		JEditorPane editorPane = new JEditorPane();
-		editorPane.setBackground(SystemColor.menu);
-		JButton btnNewButton = new JButton("\u8BA1\u7B97");
-		btnNewButton.addActionListener(new ActionListener() {
+		JEditorPane editor = new JEditorPane();
+		editor.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 15));
+		editor.setBounds(28, 363, 472, 313);
+		editor.setBackground(ConstantForUI.BACK_COLOR);
+		JButton btn1 = new JButton("\u8BA1\u7B97");
+		btn1.setBounds(388, 144, 100, 40);
+		btn1.setBackground(ConstantForUI.COM_COLOR);
+		btn1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn1.setBackground(ConstantForUI.BTN_COLOR);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btn1.setBackground(ConstantForUI.COM_COLOR);
+			}
+		});
+		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			Calculator cal=new Calculator(Double.parseDouble(textField.getText()),Double.parseDouble(textField_1.getText()));
-			editorPane.setText(Double.toString(cal.result()));
+			Calculator cal=new Calculator(Double.parseDouble(text1.getText()),Double.parseDouble(text2.getText()));
+			editor.setText(Double.toString(cal.result()));
 			}
 		});
-		btnNewButton.setForeground(Color.BLACK);
-		btnNewButton.setFont(ConstantForUI.DFONT);
+		btn1.setForeground(Color.BLACK);
+		btn1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 20));
 		
 		
-		textField = new JTextField();
-		textField.setBackground(SystemColor.menu);
-		textField.setEnabled(false);
-		textField.setColumns(10);
+		text1 = new JTextField();
+		text1.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 15));
+		text1.setBounds(245, 241, 194, 25);
+		text1.setBackground(ConstantForUI.BACK_COLOR);
+		text1.setEnabled(false);
+		text1.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setEnabled(false);
-		textField_1.setColumns(10);
+		text2 = new JTextField();
+		text2.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 15));
+		text2.setBounds(245, 281, 194, 25);
+		text2.setBackground(ConstantForUI.BACK_COLOR);
+		text2.setEnabled(false);
+		text2.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setEnabled(false);
-		textField_2.setColumns(10);
+		JButton btn2 = new JButton("\u91CD\u7F6E");
+		btn2.setBounds(270, 144, 100, 40);
+		btn2.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		btn2.setBackground(ConstantForUI.COM_COLOR);
+		btn2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn2.setBackground(ConstantForUI.AL_COLOR);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btn2.setBackground(ConstantForUI.COM_COLOR);
+			}
+		});
 		
-		textField_3 = new JTextField();
-		textField_3.setEnabled(false);
-		textField_3.setColumns(10);
+		JLabel label1 = new JLabel("\u538B\u529Bp()=");
+		label1.setBounds(96, 241, 100, 23);
+		label1.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 25));
 		
-		textField_4 = new JTextField();
-		textField_4.setEnabled(false);
-		textField_4.setColumns(10);
-		
-		textField_5 = new JTextField();
-		textField_5.setEnabled(false);
-		textField_5.setColumns(10);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(50)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(chckbxNewCheckBox, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(checkBox, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(checkBox_1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(checkBox_2, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(checkBox_3, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(checkBox_4, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)))
-							.addGap(87))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(123)
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(26)
-							.addComponent(lblNewLabel))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(editorPane)))
-					.addContainerGap())
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(lblNewLabel)
-					.addGap(42)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(chckbxNewCheckBox)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(checkBox, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(checkBox_1, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(checkBox_2, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(checkBox_3, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(checkBox_4, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(30)
-					.addComponent(btnNewButton)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(editorPane, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		contentPane.setLayout(gl_contentPane);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{contentPane, lblNewLabel}));
+		JLabel label2 = new JLabel("\u6E29\u5EA6T()=");
+		label2.setBounds(96, 274, 131, 24);
+		label2.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 25));
+		contentPane.setLayout(null);
+		contentPane.add(checkBox5);
+		contentPane.add(label2);
+		contentPane.add(label1);
+		contentPane.add(checkBox6);
+		contentPane.add(btn2);
+		contentPane.add(btn1);
+		contentPane.add(text2);
+		contentPane.add(text1);
+		contentPane.add(checkBox1);
+		contentPane.add(checkBox2);
+		contentPane.add(checkBox3);
+		contentPane.add(checkBox4);
+		contentPane.add(editor);
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{contentPane}));
 	}
 }
