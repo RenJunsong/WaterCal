@@ -10,6 +10,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Dialog.ModalExclusionType;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
@@ -40,6 +41,17 @@ public class UIFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField text1;
 	private JTextField text2;
+	private JCheckBox checkBox1;
+	private JCheckBox checkBox2;
+	private JCheckBox checkBox3;
+	private JCheckBox checkBox4;
+	private JCheckBox checkBox5;
+	private JCheckBox checkBox6;
+	private JEditorPane editor ;
+	private JButton btn1; 
+	private JButton btn2; 
+	private JLabel label1;
+	private JLabel label2;
 
 	/**
 	 * Launch the application.
@@ -70,53 +82,23 @@ public class UIFrame extends JFrame {
 		contentPane.setBackground(ConstantForUI.BACK_COLOR);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
-		JCheckBox checkBox1 = new JCheckBox("\u538B\u529B");
-		checkBox1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				checkBox1.setBackground(ConstantForUI.ACT_COLOR);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if(!checkBox1.isSelected()){
-					checkBox1.setBackground(ConstantForUI.COM_COLOR);
-				}
-			}
-		});
+		checkBox1 = new JCheckBox("\u538B\u529B");
+		UtilForUI.glorify(checkBox1);
 		checkBox1.setBounds(34, 63, 100, 40);
 		checkBox1.setHorizontalAlignment(SwingConstants.CENTER);
 		checkBox1.setBackground(ConstantForUI.COM_COLOR);
 		checkBox1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			if(checkBox1.isSelected()){
-				System.out.println("is on");
-				text1.setEnabled(true);
-			}else{
-				System.out.println("is out");
-				text1.setEnabled(false);
-				text1.setText(null);
-			}
+				clickBox(e);
 			}
 		});
 		checkBox1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
 		
-		JCheckBox checkBox2 = new JCheckBox("\u6E29\u5EA6");
+		checkBox2 = new JCheckBox("\u6E29\u5EA6");
 		checkBox2.setBounds(152, 63, 100, 41);
+		UtilForUI.glorify(checkBox2);
 		checkBox2.setHorizontalAlignment(SwingConstants.CENTER);
 		checkBox2.setBackground(ConstantForUI.COM_COLOR);
-		checkBox2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				checkBox2.setBackground(ConstantForUI.ACT_COLOR);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if(!checkBox2.isSelected()){
-					checkBox2.setBackground(ConstantForUI.COM_COLOR);
-				}
-			}
-		});
 		checkBox2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			if(checkBox2.isSelected()){
@@ -131,57 +113,57 @@ public class UIFrame extends JFrame {
 		});
 		checkBox2.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
 		
-		JCheckBox checkBox3 = new JCheckBox("\u6BD4\u7113");
+		checkBox3 = new JCheckBox("\u6BD4\u7113");
 		checkBox3.setBounds(270, 65, 100, 40);
+		UtilForUI.glorify(checkBox3);
 		checkBox3.setHorizontalAlignment(SwingConstants.CENTER);
 		checkBox3.setBackground(ConstantForUI.COM_COLOR);
 		checkBox3.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
 		
-		JCheckBox checkBox4 = new JCheckBox("\u6BD4\u71B5");
+		checkBox4 = new JCheckBox("\u6BD4\u71B5");
 		checkBox4.setBounds(388, 65, 100, 40);
+		UtilForUI.glorify(checkBox4);
 		checkBox4.setHorizontalAlignment(SwingConstants.CENTER);
 		checkBox4.setBackground(ConstantForUI.COM_COLOR);
 		checkBox4.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
 		
-		JCheckBox checkBox5 = new JCheckBox("\u6BD4\u5BB9");
+		checkBox5 = new JCheckBox("\u6BD4\u5BB9");
 		checkBox5.setBounds(34, 143, 100, 40);
+		UtilForUI.glorify(checkBox5);
 		checkBox5.setHorizontalAlignment(SwingConstants.CENTER);
 		checkBox5.setBackground(ConstantForUI.COM_COLOR);
 		checkBox5.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
 		
-		JCheckBox checkBox6 = new JCheckBox("\u5E72\u5EA6");
+		checkBox6 = new JCheckBox("\u5E72\u5EA6");
 		checkBox6.setBounds(152, 143, 100, 40);
+		UtilForUI.glorify(checkBox6);
 		checkBox6.setHorizontalAlignment(SwingConstants.CENTER);
 		checkBox6.setBackground(ConstantForUI.COM_COLOR);
 		checkBox6.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 24));
 		
 		
-		JEditorPane editor = new JEditorPane();
-		editor.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 15));
-		editor.setBounds(28, 363, 472, 313);
+		editor = new JEditorPane();
+		editor.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 19));
+		editor.setBounds(42, 363, 458, 313);
 		editor.setBackground(ConstantForUI.BACK_COLOR);
-		JButton btn1 = new JButton("\u8BA1\u7B97");
+		btn1 = new JButton("\u8BA1\u7B97");
 		btn1.setBounds(388, 144, 100, 40);
 		btn1.setBackground(ConstantForUI.COM_COLOR);
-		btn1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btn1.setBackground(ConstantForUI.BTN_COLOR);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btn1.setBackground(ConstantForUI.COM_COLOR);
-			}
-		});
+		UtilForUI.glorifycal(btn1);
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			Calculator cal=new Calculator(Double.parseDouble(text1.getText()),Double.parseDouble(text2.getText()));
-			editor.setText(Double.toString(cal.result()));
+			editor.setText(cal.result());
 			}
 		});
 		btn1.setForeground(Color.BLACK);
 		btn1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 20));
 		
+		btn2 = new JButton("\u91CD\u7F6E");
+		btn2.setBounds(270, 144, 100, 40);
+		UtilForUI.glorifycl(btn2);
+		btn2.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 20));
+		btn2.setBackground(ConstantForUI.COM_COLOR);
 		
 		text1 = new JTextField();
 		text1.setFont(new Font("Microsoft JhengHei", Font.PLAIN, 15));
@@ -197,26 +179,13 @@ public class UIFrame extends JFrame {
 		text2.setEnabled(false);
 		text2.setColumns(10);
 		
-		JButton btn2 = new JButton("\u91CD\u7F6E");
-		btn2.setBounds(270, 144, 100, 40);
-		btn2.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		btn2.setBackground(ConstantForUI.COM_COLOR);
-		btn2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btn2.setBackground(ConstantForUI.AL_COLOR);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btn2.setBackground(ConstantForUI.COM_COLOR);
-			}
-		});
 		
-		JLabel label1 = new JLabel("\u538B\u529Bp()=");
+		
+		label1 = new JLabel("\u538B\u529Bp()=");
 		label1.setBounds(96, 241, 100, 23);
 		label1.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 25));
 		
-		JLabel label2 = new JLabel("\u6E29\u5EA6T()=");
+		label2 = new JLabel("\u6E29\u5EA6T()=");
 		label2.setBounds(96, 274, 131, 24);
 		label2.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 25));
 		contentPane.setLayout(null);
@@ -233,6 +202,16 @@ public class UIFrame extends JFrame {
 		contentPane.add(checkBox3);
 		contentPane.add(checkBox4);
 		contentPane.add(editor);
+		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{text1, text2}));
 		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{contentPane}));
+	}
+
+	private void clickBox(ActionEvent e) {
+		if(((JCheckBox)e.getSource()).isSelected()){
+			text1.setEnabled(true);
+		}else{
+			text1.setEnabled(false);
+			text1.setText(null);
+		}
 	}
 }
