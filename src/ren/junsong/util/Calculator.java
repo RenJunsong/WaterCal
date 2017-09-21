@@ -8,8 +8,9 @@ import java.text.DecimalFormat;
  *
  */
 public class Calculator{
-	public double p;  //压强
-	public double T;   //温度
+	private double p;  //压强
+	private double T;   //温度
+	int region;
 	public double w;    //音速
 	public double S;   //熵
 	public double v;   //体积
@@ -23,10 +24,34 @@ public class Calculator{
 		this.p = p;
 		T = t;
 	}
+	public Calculator() {
+		super();
+	}
 
 	public String result(){
+		region=CheckRegion.checkp_T(p,T);
 		sb=new StringBuilder();
-		Property pro=new Region1();
+		Property pro=null;
+		switch(region){
+		case 0:
+			System.out.println("打扰了");
+			break;
+		case 1:
+			pro=new Region1();
+			break;
+		case 2:
+			pro=new Region2();
+			break;
+		case 3:
+			pro=new Region3();
+			break;
+		case 4:
+			pro=new Region4();
+			break;
+		case 5:
+			pro=new Region5();
+			break;
+			}
 		sb.append("\n"+"体积v=  ");
 		sb.append(sci(pro.v_pT(p, T))).append("   m^3/kg");
 		sb.append("\n"+"比焓h=  ");
@@ -42,6 +67,9 @@ public class Calculator{
 		return sb.toString();
 	}
 	public static String sci(double d) {
+		if(new Double(d).isNaN()||new Double(d).isInfinite()){
+			return "(╯‵□′)╯︵[___] (NAN or infinite)";
+		}
 		boolean flag=false;
 		if(d<0){
     	   flag=true;
@@ -55,7 +83,21 @@ public class Calculator{
         }else{
         value ='0'+decimalFormat.format(d);}
         return value;
-}
+	}
+	public double getP() {
+		return p;
+	}
 
+	public void setP(double p) {
+		this.p = p;
+	}
+
+	public double getT() {
+		return T;
+	}
+
+	public void setT(double t) {
+		T = t;
+	}
 
 }

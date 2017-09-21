@@ -10,7 +10,7 @@ import java.awt.Font;
  */
 public class ConstantForUI {
 	public static final String FONT="Microsoft YaHei UI";
-	public static final int FRAME_WIDTH=540;
+	public static final int FRAME_WIDTH=530;
 	public static final int FRAME_HEIGHT=720;
 	public static final int FRAME_X=300;
 	public static final int FRAME_Y=100;

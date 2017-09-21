@@ -5,20 +5,14 @@ package ren.junsong.util;
  *
  */
 public interface Property {
-	/**
-	public double p;  //压强
-	public double T;   //温度
-	public double w;    //音速
-	public double S;   //熵
-	public double v;   //体积
-	public double h;   //焓
-	*/
-	//and then...
+	
 	double v_pT(double p, double T);
 	double h_pT(double p, double T);
 	double w_pT(double p, double T);
 	double s_pT(double p, double T);
 	double u_pT(double p, double T);
 	double Cp_pT(double p, double T);
-	
+	double T_ph(double p,double h);
+	double T_ps(double p, double s);
+	double p_hs(double h, double s);
 }

@@ -12,6 +12,24 @@ import javax.swing.JCheckBox;
  *
  */
 public class UtilForUI {
+	/**
+	 * 检查是否为数字
+	 */
+	public static boolean checkNum(String str){
+		int i=0;
+		for(char temp:str.toCharArray()){
+			 if((temp>'9'||temp<'0')&&(temp!='.')){ 
+				 return false;
+			 }else if(temp=='.'){
+				 i++; 
+			 } 
+		 }
+		if(i<2){
+			return true;
+		}else {
+			return false;
+		}
+	}
 	public static void glorify(JCheckBox checkBox){
 		checkBox.addMouseListener(new MouseAdapter() {
 			@Override
