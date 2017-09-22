@@ -1,6 +1,8 @@
 package ren.junsong.util;
 
 import java.text.DecimalFormat;
+import ren.junsong.view.UIFrame;
+import javax.naming.spi.DirStateFactory.Result;
 
 /**
  * 定义计算器，当点击计算的时候，生成计算器对象
@@ -38,20 +40,27 @@ public class Calculator{
 			break;
 		case 1:
 			pro=new Region1();
+			sb.append("当前区域：1区");
 			break;
 		case 2:
 			pro=new Region2();
+			sb.append("当前区域：2区");
 			break;
 		case 3:
 			pro=new Region3();
+			sb.append("当前区域：3区");
 			break;
 		case 4:
-			pro=new Region4();
-			break;
+			System.out.println("something will happen");
 		case 5:
 			pro=new Region5();
+			sb.append("当前区域：5区");
 			break;
-			}
+		case 6:
+			UIFrame.myexception(6);
+			return null;	
+		}
+		
 		sb.append("\n"+"体积v=  ");
 		sb.append(sci(pro.v_pT(p, T))).append("   m^3/kg");
 		sb.append("\n"+"比焓h=  ");

@@ -286,7 +286,7 @@ public class UIFrame extends JFrame {
 		Calculator cal=new Calculator(Double.parseDouble(text1.getText()),Double.parseDouble(text2.getText()));
 		editor.setText(cal.result());
 		}else{
-			JOptionPane.showMessageDialog(null, "请检查输入内容是否为数字");
+			myexception(7);
 		}
 	}
 
@@ -298,6 +298,16 @@ public class UIFrame extends JFrame {
 			count--;
 			text1.setEnabled(false);
 			text1.setText(null);
+		}
+	}
+	public static void myexception(int ex){
+		switch(ex){
+		case 6:
+			JOptionPane.showMessageDialog(null, "输入内容越界");
+			break;
+		case 7:
+			JOptionPane.showMessageDialog(null, "请检查输入内容是否为数字");
+			break;
 		}
 	}
 }
