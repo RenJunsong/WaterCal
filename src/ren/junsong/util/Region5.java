@@ -128,7 +128,7 @@ public class Region5 implements Property {
 		return(-R * Math.pow(tau,2) * (gamma0_tautau + gammar_tautau));
 	}
 
-	@Override
+	@Override //l利用二分法来求
 	public double T_ph(double p, double h) {
 		 double Low_Bound, High_Bound, Ts, hs;
 
