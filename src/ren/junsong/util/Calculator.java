@@ -15,7 +15,7 @@ public class Calculator{
 	int region;
 	public double w;    //音速
 	public double S;   //熵
-	public double v;   //体积
+	public double v;   //比容
 	public double h;   //焓
 	public double u;   //内能
 	public double Cp;  //等压热熔
@@ -61,8 +61,10 @@ public class Calculator{
 			return null;	
 		}
 		
-		sb.append("\n"+"体积v=  ");
+		sb.append("\n"+"比容v=  ");
 		sb.append(sci(pro.v_pT(p, T))).append("   m^3/kg");
+		sb.append("\n"+"密度rho=  ");
+		sb.append(sci(1/(pro.v_pT(p, T)))).append("   kg/m^3");
 		sb.append("\n"+"比焓h=  ");
 		sb.append(sci(pro.h_pT(p, T))).append("   kJ/kg");
 		sb.append("\n"+"内能u=  ");

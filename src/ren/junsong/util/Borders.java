@@ -1,34 +1,20 @@
 package ren.junsong.util;
 
 public class Borders {
-	//public Region_Border()
-       // {
-        //    InitializeComponent();
-       // }
-
+	
 	public Double B23p_T(Double T){
-          //Function B23p_T(ByVal T As Double) As Double
-          //Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam 1997
-          //Section 4 Auxiliary Equation for the Boundary between Regions 2 and 3
-          //Eq 5, Page 5
+         
 		return (348.05185628969 - 1.1671859879975 * T + 1.0192970039326E-03 * Math.pow(T, 2));
 	}
 
 	public Double B23T_p(Double p){
-         //Function B23T_p(ByVal p As Double) As Double
-         //Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam 1997
-         //Section 4 Auxiliary Equation for the Boundary between Regions 2 and 3
-         //Eq 6, Page 6
+         
 
 		return (572.54459862746 + Math.pow(((p - 13.91883977887) / 1.0192970039326E-03),0.5));
 	}
 
 	public Double p3sat_h(Double h){
-           //Function p3sat_h(ByVal h As Double) As Double
-           //Revised Supplementary Release on Backward Equations for the Functions T(p,h), v(p,h) and T(p,s), v(p,s) for Region 3 of the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam 2004
-           //Section 4 Boundary Equations psat(h) and psat(s) for the Saturation Lines of Region 3
-           //Se pictures Page 17, Eq 10, Table 17, Page 18
-
+          
 		double ps;
 		double[] Ii = new double[] {0, 1, 1, 1, 1, 5, 7, 8, 14, 20, 22, 24, 28, 36};
 		double[] Ji =new double[] {0, 1, 3, 4, 36, 3, 0, 24, 16, 16, 3, 18, 8, 24};
@@ -46,7 +32,7 @@ public class Borders {
 	}
 
 	public Double p3sat_s(Double s){
-             //Function p3sat_s(ByVal s As Double) As Double
+            
 
 		Double sigma, p;
 
@@ -69,9 +55,7 @@ public class Borders {
         public Double hB13_s(Double s)
         {
         
-            //Function hB13_s(ByVal s As Double) As Double
-            //Supplementary Release on Backward Equations ( ) , p h s for Region 3,
-            //Chapter 4.5 page 23.
+            
 
             Double sigma, eta;
   
@@ -92,9 +76,7 @@ public class Borders {
 
        public Double TB23_hs(Double h, Double s)
        {
-          //Function TB23_hs(ByVal h As Double, ByVal s As Double) As Double
-          //Supplementary Release on Backward Equations ( ) , p h s for Region 3,
-          //Chapter 4.6 page 25.
+         
 
            Double sigma, eta, teta;
    

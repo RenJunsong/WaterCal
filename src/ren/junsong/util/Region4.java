@@ -4,10 +4,7 @@ public class Region4{
 	 public double p4_T(double T)
      {
 
-         //Function p4_T(ByVal T As double) As double
-         //Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, September 1997
-         //Section 8.1 The Saturation-Pressure Equation
-         //Eq 30, Page 33
+        
          
          double teta, a, b, c;
 
