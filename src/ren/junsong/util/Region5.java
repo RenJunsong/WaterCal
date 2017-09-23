@@ -133,4 +133,9 @@ public class Region5 implements Property {
 		return (-R * Math.pow(tau, 2) * (gamma0_tautau + gammar_tautau));
 	}
 
+	@Override
+	public double g_pT(double p, double T) {
+		return h_pT(p,T)-T*s_pT(p,T);
+	}
+
 }

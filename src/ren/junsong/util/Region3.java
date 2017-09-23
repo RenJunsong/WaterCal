@@ -179,4 +179,9 @@ public class Region3 implements Property {
 		return Cp_rhoT(rho_pT(p, T), T);
 	}
 
+	@Override
+	public double g_pT(double p, double T) {
+		return h_pT(p,T)-T*s_pT(p,T);
+	}
+
 }

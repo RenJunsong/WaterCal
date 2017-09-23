@@ -1,7 +1,7 @@
 package ren.junsong.util;
 
 /*
- * 用于检验输入内容所在分区
+ * 用于检验输入内容所在分区 返回 0（未知） 1,2,3,4(1,2),5,25,23,13
  */
 public class CheckRegion {
 	public static int region;
@@ -21,7 +21,7 @@ public class CheckRegion {
 		} else if ((T == 1073.15) && (p <= 10)) {
 			return 25; // 25表示2，5边界
 		} else if (T > 623.15) {
-			if (p > bor.B23p_T(T) + 0.0000000001) {
+			if (p > bor.B23p_T(T) + 0.00000000001) {
 				return 3;
 			} else if (Math.abs((p - bor.B23p_T(T))) < 0.0000000001) {
 				return 23;
@@ -32,7 +32,7 @@ public class CheckRegion {
 		// 1.4.2
 		{
 			ps = new Region4().p_T(T);
-			if ((Math.abs(p - ps)) < 0.0000000001) {
+			if ((Math.abs(p - ps)) < 0.0000001) {
 				return 4;
 			} else if (p > ps) {
 				if (T == 623.15) {

@@ -1,7 +1,7 @@
 package ren.junsong.util;
 
 public class Region2 implements Property {
-	double tau, g0pi, grpi, g0tau, grtau, g0, gr, g0tautau, grtautau, grpitau, grpipi;
+	double tau, g0pi, grpi, g0tau, grtau, g0, gr, g0tautau, grtautau, grpitau, grpipi, T0;
 	double R = ConstantForCal.R;
 	double J0[] = ConstantForCal.J20;
 	double n0[] = ConstantForCal.n20;
@@ -133,6 +133,27 @@ public class Region2 implements Property {
 		}
 
 		return (-R * Math.pow(tau, 2) * (g0tautau + grtautau));
+	}
+
+	@Override
+	public double g_pT(double p, double T) {
+		T0 = T;
+		tau = 540 / T;
+		g0 = Math.log(p);
+		g0tau = 0;
+
+		for (int i = 0; i <= 8; i++) {
+			g0 = g0 + n0[i] * Math.pow(tau, J0[i]);
+
+		}
+
+		gr = 0;
+
+		for (int i = 0; i <= 42; i++) {
+			gr = gr + nr[i] * Math.pow(p, Ir[i]) * Math.pow((tau - 0.5), Jr[i]);
+
+		}
+		return (g0 + gr) * T0 * R;
 	}
 
 }

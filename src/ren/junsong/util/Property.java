@@ -7,6 +7,7 @@ package ren.junsong.util;
  *
  */
 public interface Property {
+	double g_pT(double p, double T);
 
 	double v_pT(double p, double T);
 
@@ -20,5 +21,4 @@ public interface Property {
 
 	double Cp_pT(double p, double T);
 
-	
 }
