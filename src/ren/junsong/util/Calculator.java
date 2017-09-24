@@ -57,7 +57,7 @@ public class Calculator {
 	}
 	public double test(double p,double T){
 		Property pro = new Region2();
-		return pro.s_pT(p, T);
+		return pro.g_pT(p, T);
 	}
 	public String calRegion2(double p, double T) {
 		StringBuilder sb = new StringBuilder();
@@ -82,7 +82,14 @@ public class Calculator {
 		sb.append(calRegionAll(pro, p, T));
 		return sb.toString();
 	}
-
+	public String calRegion4_p(double p){
+		Region4 pro4=new Region4();
+		return sci(pro4.T_p(p)).toString();
+	}
+	public String calRegion4_T(double T){
+		Region4 pro4=new Region4();
+		return sci(pro4.p_T(T)).toString();
+	}
 	public String resultpT() {
 		region = CheckRegion.checkp_T(p, T);
 		StringBuilder sb = new StringBuilder();

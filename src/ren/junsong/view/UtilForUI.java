@@ -1,11 +1,19 @@
 package ren.junsong.view;
 
 import java.awt.Color;
+import java.awt.Paint;
+import java.awt.PaintContext;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.ColorModel;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 /**
@@ -97,5 +105,37 @@ public class UtilForUI {
 
 			}
 		});
+	}
+	public static void glorifyLabel(JLabel label,Color colorb,Color colora) {
+		label.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				label.setForeground(colorb);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+
+				label.setForeground(colora);
+
+			}
+		});
+	}
+	
+	public class MyPaint implements Paint{
+
+		@Override
+		public int getTransparency() {
+			// TODO 自动生成的方法存根
+			return 0;
+		}
+
+		@Override
+		public PaintContext createContext(ColorModel cm, Rectangle deviceBounds, Rectangle2D userBounds,
+				AffineTransform xform, RenderingHints hints) {
+			// TODO 自动生成的方法存根
+			return null;
+		}
+		
 	}
 }
