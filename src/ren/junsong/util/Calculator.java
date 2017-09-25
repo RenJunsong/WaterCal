@@ -55,10 +55,6 @@ public class Calculator {
 		sb.append(calRegionAll(pro, p, T));
 		return sb.toString();
 	}
-	public double test(double p,double T){
-		Property pro = new Region2();
-		return pro.g_pT(p, T);
-	}
 	public String calRegion2(double p, double T) {
 		StringBuilder sb = new StringBuilder();
 		Property pro = new Region2();

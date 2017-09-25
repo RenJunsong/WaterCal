@@ -27,6 +27,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import javax.swing.DropMode;
@@ -132,7 +134,21 @@ public class UIFrame extends JFrame {
 		labelAll.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				switchMode();
+				try {
+					switchMode();
+				} catch (ClassNotFoundException e1) {
+					// TODO 自动生成的 catch 块
+					e1.printStackTrace();
+				} catch (InstantiationException e1) {
+					// TODO 自动生成的 catch 块
+					e1.printStackTrace();
+				} catch (IllegalAccessException e1) {
+					// TODO 自动生成的 catch 块
+					e1.printStackTrace();
+				} catch (UnsupportedLookAndFeelException e1) {
+					// TODO 自动生成的 catch 块
+					e1.printStackTrace();
+				}
 			}
 		});
 		UtilForUI.glorifyLabel(labelAll);
@@ -156,7 +172,7 @@ public class UIFrame extends JFrame {
 
 	}
 
-	protected void switchMode() {
+	protected void switchMode() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 		this.dispose();
 		try {
 			new StaUIFrame().setVisible(true);

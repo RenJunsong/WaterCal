@@ -110,13 +110,13 @@ public class UtilForUI {
 		label.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				label.setForeground(colorb);
+				label.setBackground(colorb);
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 
-				label.setForeground(colora);
+				label.setBackground(colora);
 
 			}
 		});
