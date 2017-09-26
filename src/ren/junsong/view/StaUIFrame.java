@@ -73,7 +73,7 @@ public class StaUIFrame extends JFrame {
 	private Font font = new Font("Microsoft JhengHei", Font.PLAIN, 19);
 	private JLabel labelRegion0;
 	private JTextField text2;
-
+	JFreeChart lineChart;
 	private JLabel lblNewLabel_1;
 	private JTextField text3;
 	private JLabel lblNewLabel_2;
@@ -119,7 +119,7 @@ public class StaUIFrame extends JFrame {
 		String title = "";
 		String axis_xtitle = "x";
 		String axis_ytitle = "y";
-		JFreeChart lineChart = ChartFactory.createXYLineChart(title, axis_xtitle, axis_ytitle, preXYSeriesCollection(),
+		lineChart = ChartFactory.createXYLineChart(title, axis_xtitle, axis_ytitle, preXYSeriesCollection(),
 				PlotOrientation.VERTICAL, false, true, false);
 
 		lineChart.setBackgroundPaint(ConstantForUI.BACK_COLOR);
@@ -139,7 +139,7 @@ public class StaUIFrame extends JFrame {
 		valueAxis.setLabelPaint(Color.black);
 		Plot plot = lineChart.getXYPlot();
 
-		plot.setNoDataMessage("No Date"); // 没有数据时显示的消息
+		plot.setNoDataMessage("No Data"); // 没有数据时显示的消息
 		plot.setNoDataMessageFont(new Font("Microsoft JhengHei UI", Font.ITALIC, 30));
 		plot.setBackgroundPaint(ConstantForUI.BACK_COLOR);
 		lineChart.getXYPlot().getRangeAxis().setLabelFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 15));
@@ -259,6 +259,7 @@ public class StaUIFrame extends JFrame {
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lineChart.getXYPlot().setDataset(createXYSeriesCollection());
+				
 			}
 		});
 		btn2.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 15));
@@ -537,44 +538,66 @@ public class StaUIFrame extends JFrame {
 			XYSeries series = new XYSeries("s=f(p,T)");
 			double p = Double.parseDouble(text2.getText());
 			switch (labeltarget.getText()) {
-
+			
 			case "g(kJ/kg)":
+				lineChart.getTitle().setText("g关于T的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("g(KJ/kg");
+				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
 					series.add(T, cal.g_pT(p, T));
 				}
 				break;
 			case "w(m/s)":
+				lineChart.getTitle().setText("w关于T的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("w(m/s)");
+				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
 					series.add(T, cal.w_pT(p, T));
 				}
 				break;
 			case "v(m^3/kg)":
+				
+				lineChart.getTitle().setText("v关于T的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("v(m^3/kg)");
+				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
 					series.add(T, cal.v_pT(p, T));
 				}
 				break;
 			case "h(kJ/kg)":
+				lineChart.getTitle().setText("h关于T的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("h(kJ/kg)");
+				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
 					series.add(T, cal.h_pT(p, T));
 				}
 				break;
 			case "u(kJ/kg)":
+				lineChart.getTitle().setText("u关于T的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("u(kJ/kg)");
+				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
 					series.add(T, cal.u_pT(p, T));
 				}
 				break;
 			case "s(kJ/(kg*k))":
+				lineChart.getTitle().setText("s关于T的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("s(kJ/(kg*k))");
+				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
 					series.add(T, cal.s_pT(p, T));
 				}
 				break;
 			case "cp(kJ/(kg*k))":
+				lineChart.getTitle().setText("Cp关于T的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("cp(kJ/(kg*k))");
+				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
 					series.add(T, cal.Cp_pT(p, T));
@@ -590,42 +613,63 @@ public class StaUIFrame extends JFrame {
 			switch (labeltarget.getText()) {
 
 			case "g(kJ/kg)":
+				lineChart.getTitle().setText("g关于p的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("g(kJ/kg)");
+				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
 					series.add(p, cal.g_pT(p, T));
 				}
 				break;
 			case "w(m/s)":
+				lineChart.getTitle().setText("w关于p的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("w(m/s)");
+				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
 					series.add(p, cal.w_pT(p, T));
 				}
 				break;
 			case "v(m^3/kg)":
+				lineChart.getTitle().setText("v关于p的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("v(m^3/kg)");
+				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
 					series.add(p, cal.v_pT(p, T));
 				}
 				break;
 			case "h(kJ/kg)":
+				lineChart.getTitle().setText("h关于p的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("h(kJ/kg)");
+				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
 					series.add(p, cal.h_pT(p, T));
 				}
 				break;
 			case "u(kJ/kg)":
+				lineChart.getTitle().setText("u关于p的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("u(kJ/kg)");
+				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
 					series.add(p, cal.u_pT(p, T));
 				}
 				break;
 			case "s(kJ/(kg*k))":
+				lineChart.getTitle().setText("s关于p的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("s(kJ/(kg*k))");
+				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
 					series.add(p, cal.s_pT(p, T));
 				}
 				break;
 			case "cp(kJ/(kg*k))":
+				lineChart.getTitle().setText("Cp关于p的函数");
+				lineChart.getXYPlot().getRangeAxis().setLabel("cp(kJ/(kg*k))");
+				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
 					series.add(p, cal.Cp_pT(p, T));
