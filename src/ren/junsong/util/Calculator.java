@@ -26,16 +26,82 @@ public class Calculator {
 		super();
 	}
 
+	public double drawRegion(int x, double p, double T) {
+		double result = 0;
+		int drawregion = CheckRegion.checkp_T(p, T);
+		Property pro = null;
+		switch (drawregion) {
+		case 0:
+			UIFrame.myexception(0);
+			return 0;
+		case 6:
+			UIFrame.myexception(6);
+			return 0;
+		case 1:
+			pro = new Region1();
+			break;
+		case 2:
+			pro = new Region2();
+			break;
+		case 3:
+			pro = new Region3();
+			break;
+		case 4:
+			pro = new Region1();
+			break;
+		case 5:
+			pro = new Region5();
+			break;
+		case 23:
+			pro = new Region2();
+			break;
+		case 13:
+			pro = new Region1();
+			break;
+
+		case 12:
+			pro = new Region1();
+			break;
+		}
+		switch (x) {
+		case 1:
+			result = pro.g_pT(p, T);
+			break;
+		case 2:
+			result = pro.w_pT(p, T);
+			break;
+		case 3:
+			result = pro.v_pT(p, T);
+			break;
+		case 4:
+			result = pro.h_pT(p, T);
+			break;
+		case 5:
+			result = pro.u_pT(p, T);
+			break;
+		case 6:
+			result = pro.s_pT(p, T);
+			break;
+		case 7:
+			result = pro.Cp_pT(p, T);
+			break;
+			
+		}
+		return result;
+	}
+
 	private String calRegionAll(Property pro, double p, double T) {
 		StringBuilder sbAll = new StringBuilder();
 		sbAll.append("\n" + "自由能g=  ");
 		sbAll.append(sci(pro.g_pT(p, T))).append("   kJ/kg");
+		sbAll.append("\n" + "自由能g=  ");
+		sbAll.append(sci(pro.g_pT(p, T) * 0.01801528)).append("   kJ/mol");
 		sbAll.append("\n" + "比容v=  ");
 		sbAll.append(sci(pro.v_pT(p, T))).append("   m^3/kg");
 		sbAll.append("\n" + "密度rho=  ");
 		sbAll.append(sci(1 / (pro.v_pT(p, T)))).append("   kg/m^3");
 		sbAll.append("\n" + "比焓h=  ");
-		sbAll.append(sci(pro.h_pT(p, T))).append("   kJ/kg");
+		sbAll.append(sci(pro.h_pT(p, T) * 0.01801528)).append("   kJ/kg");
 		sbAll.append("\n" + "内能u=  ");
 		sbAll.append(sci(pro.u_pT(p, T))).append("   kJ/kg");
 		sbAll.append("\n" + "音速w=  ");
@@ -55,6 +121,7 @@ public class Calculator {
 		sb.append(calRegionAll(pro, p, T));
 		return sb.toString();
 	}
+
 	public String calRegion2(double p, double T) {
 		StringBuilder sb = new StringBuilder();
 		Property pro = new Region2();
@@ -78,14 +145,17 @@ public class Calculator {
 		sb.append(calRegionAll(pro, p, T));
 		return sb.toString();
 	}
-	public String calRegion4_p(double p){
-		Region4 pro4=new Region4();
+
+	public String calRegion4_p(double p) {
+		Region4 pro4 = new Region4();
 		return sci(pro4.T_p(p)).toString();
 	}
-	public String calRegion4_T(double T){
-		Region4 pro4=new Region4();
+
+	public String calRegion4_T(double T) {
+		Region4 pro4 = new Region4();
 		return sci(pro4.p_T(T)).toString();
 	}
+
 	public String resultpT() {
 		region = CheckRegion.checkp_T(p, T);
 		StringBuilder sb = new StringBuilder();

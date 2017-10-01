@@ -241,7 +241,7 @@ public class StaUIFrame extends JFrame {
 		JLabel Label4 = new JLabel("\u8BF7\u9009\u62E9\u5206\u533A\uFF1A ");
 		Label4.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
 		Label4.setBounds(31, 70, 115, 25);
-		contentPane.add(Label4);
+		
 
 		JLabel Label5 = new JLabel("\u56FA\u5B9A\u7C7B\u578B:");
 		Label5.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
@@ -267,6 +267,7 @@ public class StaUIFrame extends JFrame {
 		contentPane.add(btn2);
 
 		contentPane.setLayout(null);
+	//	contentPane.add(Label4);
 		contentPane.add(labelAll);
 		contentPane.add(label1);
 		contentPane.add(label2);
@@ -274,11 +275,11 @@ public class StaUIFrame extends JFrame {
 		contentPane.add(text1);
 		contentPane.add(btn1);
 		contentPane.add(editor1);
-		contentPane.add(labelRegion1);
-		contentPane.add(labelRegion2);
-		contentPane.add(labelRegion3);
-		contentPane.add(labelRegion5);
-		contentPane.add(labelRegion0);
+		//contentPane.add(labelRegion1);
+		//contentPane.add(labelRegion2);
+		//contentPane.add(labelRegion3);
+		//contentPane.add(labelRegion5);
+		//contentPane.add(labelRegion0);
 		contentPane.add(labelp_T1);
 		contentPane.add(labelp_T2);
 		contentPane.add(text2);
@@ -514,26 +515,11 @@ public class StaUIFrame extends JFrame {
 
 	private XYSeriesCollection createXYSeriesCollection() {
 		XYSeriesCollection dataset = new XYSeriesCollection();
-		Property cal = new Region1();
 		if (!UtilForUI.checkNum(text2.getText()) && !UtilForUI.checkNum(text3.getText())
 				&& !UtilForUI.checkNum(text4.getText()) && !UtilForUI.checkNum(text5.getText())) {
 			JOptionPane.showMessageDialog(null, "请检查输入内容是否为数字");
 		}
-		switch (labelRegion0.getText()) {
-		case "1\u533A":
-			cal = new Region1();
-			break;
-		case "2\u533A":
-			cal = new Region2();
-			break;
-		case "3\u533A":
-			cal = new Region3();
-			break;
-		case "5\u533A":
-			cal = new Region5();
-			break;
-		}
-
+		Calculator cal=new Calculator();
 		if (labelp_T1.getText().equals("p(Mpa)")) {
 			XYSeries series = new XYSeries("s=f(p,T)");
 			double p = Double.parseDouble(text2.getText());
@@ -545,7 +531,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
-					series.add(T, cal.g_pT(p, T));
+					series.add(T,cal.drawRegion(1, p, T));
 				}
 				break;
 			case "w(m/s)":
@@ -554,7 +540,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
-					series.add(T, cal.w_pT(p, T));
+					series.add(T, cal.drawRegion(2, p, T));
 				}
 				break;
 			case "v(m^3/kg)":
@@ -564,7 +550,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
-					series.add(T, cal.v_pT(p, T));
+					series.add(T, cal.drawRegion(3, p, T));
 				}
 				break;
 			case "h(kJ/kg)":
@@ -573,7 +559,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
-					series.add(T, cal.h_pT(p, T));
+					series.add(T, cal.drawRegion(4, p, T));
 				}
 				break;
 			case "u(kJ/kg)":
@@ -582,7 +568,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
-					series.add(T, cal.u_pT(p, T));
+					series.add(T, cal.drawRegion(5, p, T));
 				}
 				break;
 			case "s(kJ/(kg*k))":
@@ -591,7 +577,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
-					series.add(T, cal.s_pT(p, T));
+					series.add(T, cal.drawRegion(6, p, T));
 				}
 				break;
 			case "cp(kJ/(kg*k))":
@@ -600,7 +586,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
-					series.add(T, cal.Cp_pT(p, T));
+					series.add(T,cal.drawRegion(7, p, T));
 				}
 				break;
 			}
@@ -618,7 +604,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
-					series.add(p, cal.g_pT(p, T));
+					series.add(p,cal.drawRegion(1, p, T));
 				}
 				break;
 			case "w(m/s)":
@@ -627,7 +613,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
-					series.add(p, cal.w_pT(p, T));
+					series.add(p, cal.drawRegion(2, p, T));
 				}
 				break;
 			case "v(m^3/kg)":
@@ -636,7 +622,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
-					series.add(p, cal.v_pT(p, T));
+					series.add(p,cal.drawRegion(3, p, T));
 				}
 				break;
 			case "h(kJ/kg)":
@@ -645,7 +631,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
-					series.add(p, cal.h_pT(p, T));
+					series.add(p, cal.drawRegion(4, p, T));
 				}
 				break;
 			case "u(kJ/kg)":
@@ -654,7 +640,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
-					series.add(p, cal.u_pT(p, T));
+					series.add(p,cal.drawRegion(5, p, T));
 				}
 				break;
 			case "s(kJ/(kg*k))":
@@ -663,7 +649,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
-					series.add(p, cal.s_pT(p, T));
+					series.add(p, cal.drawRegion(6, p, T));
 				}
 				break;
 			case "cp(kJ/(kg*k))":
@@ -672,7 +658,7 @@ public class StaUIFrame extends JFrame {
 				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
-					series.add(p, cal.Cp_pT(p, T));
+					series.add(p, cal.drawRegion(7, p, T));
 				}
 				break;
 			}
