@@ -165,7 +165,7 @@ public class StaUIFrame extends JFrame {
 		label_h = new JLabel();
 		label_w = new JLabel();
 		List<JLabel> combo = createCombo(labeltarget, font1);
-		addJLabel(combo, label_g, font1, "g(kJ/kg)", 185, 182, 86, 28);
+		addJLabel(combo, label_g, font1, "g(kJ/mol)", 185, 182, 86, 28);
 		addJLabel(combo, label_w, font1, "w(m/s)", 185, 207, 86, 28);
 		addJLabel(combo, label_v, font1, "v(m^3/kg)", 185, 232, 86, 28);
 		addJLabel(combo, label_h, font1, "h(kJ/kg)", 185, 257, 86, 28);
@@ -190,11 +190,13 @@ public class StaUIFrame extends JFrame {
 		text3.setColumns(10);
 
 		text4 = new JTextField();
+		text4.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 15));
 		text4.setBounds(104, 228, 77, 25);
 		text4.setBackground(ConstantForUI.BACK_COLOR);
 		text4.setColumns(10);
 
 		text5 = new JTextField();
+		text5.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 15));
 		text5.setBounds(104, 265, 77, 25);
 		text5.setBackground(ConstantForUI.BACK_COLOR);
 		text5.setColumns(10);
@@ -525,9 +527,9 @@ public class StaUIFrame extends JFrame {
 			double p = Double.parseDouble(text2.getText());
 			switch (labeltarget.getText()) {
 			
-			case "g(kJ/kg)":
+			case "g(kJ/mol)":
 				lineChart.getTitle().setText("g关于T的函数");
-				lineChart.getXYPlot().getRangeAxis().setLabel("g(KJ/kg");
+				lineChart.getXYPlot().getRangeAxis().setLabel("g(KJ/mol)");
 				lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
 				for (double T = Double.parseDouble(text3.getText()); T < Double
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
@@ -598,9 +600,9 @@ public class StaUIFrame extends JFrame {
 			double T = Double.parseDouble(text2.getText());
 			switch (labeltarget.getText()) {
 
-			case "g(kJ/kg)":
+			case "g(kJ/mol)":
 				lineChart.getTitle().setText("g关于p的函数");
-				lineChart.getXYPlot().getRangeAxis().setLabel("g(kJ/kg)");
+				lineChart.getXYPlot().getRangeAxis().setLabel("g(kJ/mol)");
 				lineChart.getXYPlot().getDomainAxis().setLabel("p(Mpa)");
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {

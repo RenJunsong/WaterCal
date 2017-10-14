@@ -65,7 +65,7 @@ public class Calculator {
 		}
 		switch (x) {
 		case 1:
-			result = pro.g_pT(p, T);
+			result = pro.g_pT(p, T)* 0.01801528;
 			break;
 		case 2:
 			result = pro.w_pT(p, T);
@@ -92,8 +92,8 @@ public class Calculator {
 
 	private String calRegionAll(Property pro, double p, double T) {
 		StringBuilder sbAll = new StringBuilder();
-		sbAll.append("\n" + "自由能g=  ");
-		sbAll.append(sci(pro.g_pT(p, T))).append("   kJ/kg");
+		//sbAll.append("\n" + "自由能g=  ");
+	//	sbAll.append(sci(pro.g_pT(p, T))).append("   kJ/kg");
 		sbAll.append("\n" + "自由能g=  ");
 		sbAll.append(sci(pro.g_pT(p, T) * 0.01801528)).append("   kJ/mol");
 		sbAll.append("\n" + "比容v=  ");
