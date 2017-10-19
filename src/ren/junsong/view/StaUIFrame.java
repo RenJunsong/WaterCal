@@ -204,7 +204,7 @@ public class StaUIFrame extends JFrame {
 		btn1.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 15));
 		btn1.setBackground(ConstantForUI.COM_COLOR);
 		UtilForUI.glorifycal(btn1);
-		btn1.addActionListener(new ActionListener() {
+		btn1.addActionListener(new ActionListener() {  
 			public void actionPerformed(ActionEvent e) {
 				calRegion4();
 			}
