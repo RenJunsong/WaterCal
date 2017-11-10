@@ -65,7 +65,7 @@ public class Calculator {
 		}
 		switch (x) {
 		case 1:
-			result = pro.g_pT(p, T)* 0.01801528;
+			result = pro.g_pT(p, T) * 0.01801528;
 			break;
 		case 2:
 			result = pro.w_pT(p, T);
@@ -85,21 +85,25 @@ public class Calculator {
 		case 7:
 			result = pro.Cp_pT(p, T);
 			break;
-			
+
 		}
 		return result;
 	}
 
 	private String calRegionAll(Property pro, double p, double T) {
+
 		StringBuilder sbAll = new StringBuilder();
-		//sbAll.append("\n" + "自由能g=  ");
-	//	sbAll.append(sci(pro.g_pT(p, T))).append("   kJ/kg");
-		sbAll.append("\n" + "自由能g=  ");
-		sbAll.append(sci(pro.g_pT(p, T) * 0.01801528)).append("   kJ/mol");
-		sbAll.append("\n" + "自由能ΔG1=  ");
-		sbAll.append(sci(pro.g_pT(p, T) * 0.01801528-237.058815)).append("   kJ/mol");
-		sbAll.append("\n" + "自由能ΔG2=  ");
-		sbAll.append(sci((pro.h_pT(p, T) * 0.01801528-287.72030852)-pro.s_pT(p, T)* 0.01801528*T)).append("   kJ/mol");
+		if (p == 0.1) {
+			sbAll.append("\n" + "自由能g=  ");
+			double d=1.62762E-7;
+			sbAll.append(sci(-237.141-(T-298.15)*0.06995+(-0.04324*T-0.5*8.11987E-5*Math.pow(T, 2)-3256.68494/(2*T)-1/6*d*Math.pow(T, 3)+0.04324*T*Math.log(T))-(-0.04324*298.15-0.5*8.11987E-5*298.15*298.15-3256.68494/(2*298.15)-1/6*d*Math.pow(298.15, 3)+0.04324*298.15*Math.log(298.15)))).append("   kJ/mol");
+		} else {
+			sbAll.append("\n" + "自由能g=  ");
+			sbAll.append(sci(pro.g_pT(p, T) * 0.01801528)).append("   kJ/mol");
+		}
+		// sbAll.append("\n" + "自由能g= ");
+		// sbAll.append(sci(pro.g_pT(p, T))).append(" kJ/kg");
+
 		sbAll.append("\n" + "比容v=  ");
 		sbAll.append(sci(pro.v_pT(p, T))).append("   m^3/kg");
 		sbAll.append("\n" + "密度rho=  ");
@@ -107,17 +111,15 @@ public class Calculator {
 		sbAll.append("\n" + "比焓h=  ");
 		sbAll.append(sci(pro.h_pT(p, T) * 0.01801528)).append("   kJ/mol");
 		sbAll.append("\n" + "比焓Δh=  ");
-		sbAll.append(sci(pro.h_pT(p, T) * 0.01801528-286.930523269)).append("   kJ/mol");
+		sbAll.append(sci(pro.h_pT(p, T) * 0.01801528 - 286.930523269)).append("   kJ/mol");
 		sbAll.append("\n" + "内能u=  ");
-		sbAll.append(sci(pro.u_pT(p, T)* 0.01801528)).append("   kJ/mol");
+		sbAll.append(sci(pro.u_pT(p, T) * 0.01801528)).append("   kJ/mol");
 		sbAll.append("\n" + "音速w=  ");
 		sbAll.append(sci(pro.w_pT(p, T))).append("   m/s");
 		sbAll.append("\n" + "等压热熔Cp=  ");
-		sbAll.append(sci(pro.Cp_pT(p, T)* 0.01801528)).append("   kJ/(mol*k)");
+		sbAll.append(sci(pro.Cp_pT(p, T) * 0.01801528)).append("   kJ/(mol*k)");
 		sbAll.append("\n" + "熵s=  ");
-		sbAll.append(sci(pro.Cp_pT(p, T))).append("   kJ/(mol*k)");
-		sbAll.append("\n" + "熵s=  ");
-		sbAll.append(sci(pro.s_pT(p, T)* 0.01801528)).append("   kJ/(mol*k)");
+		sbAll.append(sci(pro.s_pT(p, T) * 1000 * 0.01801528 + 63.33422427)).append("   J/(mol*k)");
 		return sbAll.toString();
 
 	};
