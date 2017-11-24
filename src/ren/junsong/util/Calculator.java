@@ -65,7 +65,7 @@ public class Calculator {
 		}
 		switch (x) {
 		case 1:
-			result = pro.g_pT(p, T) * 0.01801528-237.058815;
+			result = pro.g_pT(p, T) * 0.01801528 + 0.0821850173;
 			break;
 		case 2:
 			result = pro.w_pT(p, T);
@@ -80,7 +80,7 @@ public class Calculator {
 			result = pro.u_pT(p, T);
 			break;
 		case 6:
-			result = pro.s_pT(p, T)* 1000 * 0.01801528 + 63.33422427;
+			result = pro.s_pT(p, T) * 1000 * 0.01801528 + 63.33422427;
 			break;
 		case 7:
 			result = pro.Cp_pT(p, T);
@@ -90,20 +90,38 @@ public class Calculator {
 		return result;
 	}
 
-	private String calRegionAll(Property pro, double p, double T) {
-
-		StringBuilder sbAll = new StringBuilder();
-		if (p == 0.11) {
-			sbAll.append("\n" + "自由能g=  ");
-			double d=1.62762E-7;
-			sbAll.append(sci(-237.141-(T-298.15)*0.06995+(-0.04324*T-0.5*8.11987E-5*Math.pow(T, 2)-3256.68494/(2*T)-1/6*d*Math.pow(T, 3)+0.04324*T*Math.log(T))-(-0.04324*298.15-0.5*8.11987E-5*298.15*298.15-3256.68494/(2*298.15)-1/6*d*Math.pow(298.15, 3)+0.04324*298.15*Math.log(298.15)))).append("   kJ/mol");
-		} else {
-			sbAll.append("\n" + "自由能g=  ");
-			sbAll.append(sci(pro.g_pT(p, T) * 0.01801528-237.058815)).append("   kJ/mol");
+	public double drawIdealGas(int x, double p, double T) {
+		double result = 0;
+		switch (x) {
+		case 0:// ideal gas
+			IdealGas ideal = new IdealGas();
+			result = ideal.Idealg_pT(p, T);
+			break;
+		case 1:// van der gas
+			IdealGas ideal2 = new IdealGas();
+			result = ideal2.VanDerg_pT(p, T);
+			break;
 		}
+		
+		return result;
+	}
+
+	private String calRegionAll(Property pro, double p, double T) {
+		IdealGas ideal = new IdealGas();
+		StringBuilder sbAll = new StringBuilder();
+		double ht = pro.h_pT(p, T) * 0.01801528;
+		double st = pro.s_pT(p, T) * 1000 * 0.01801528;
+
+		sbAll.append("\n" + "自由能修正g=  ");
+		sbAll.append(sci(pro.g_pT(p, T) * 0.01801528 + 0.0821850173)).append("   kJ/mol");
+		sbAll.append("\n" + "理想气体自由能g=  ");
+		sbAll.append(sci(ideal.Idealg_pT(p, T))).append("   kJ/mol");
 		// sbAll.append("\n" + "自由能g= ");
 		// sbAll.append(sci(pro.g_pT(p, T))).append(" kJ/kg");
-
+		sbAll.append("\n" + "自由能未修正g=  ");
+		sbAll.append(sci(pro.g_pT(p, T) * 0.01801528)).append("   kJ/mol");
+		sbAll.append("\n" + "自由能g=t-st  ");
+		sbAll.append(sci(ht - T * st / 1000)).append("   kJ/mol");
 		sbAll.append("\n" + "比容v=  ");
 		sbAll.append(sci(pro.v_pT(p, T))).append("   m^3/kg");
 		sbAll.append("\n" + "密度rho=  ");
@@ -111,7 +129,8 @@ public class Calculator {
 		sbAll.append("\n" + "比焓h=  ");
 		sbAll.append(sci(pro.h_pT(p, T) * 0.01801528)).append("   kJ/mol");
 		sbAll.append("\n" + "比焓Δh=  ");
-		sbAll.append(sci(pro.h_pT(p, T) * 0.01801528 - 286.930523269)).append("   kJ/mol");
+
+		sbAll.append(sci(pro.h_pT(p, T) * 0.01801528 - 287.720309)).append("   kJ/mol");
 		sbAll.append("\n" + "内能u=  ");
 		sbAll.append(sci(pro.u_pT(p, T) * 0.01801528)).append("   kJ/mol");
 		sbAll.append("\n" + "音速w=  ");
