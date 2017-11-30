@@ -537,8 +537,8 @@ public class StaUIFrame extends JFrame {
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
 					series.add(T,cal.drawRegion(1, p, T));
 					series_ideal.add(T,cal.drawIdealGas(0, p, T));
-					series_vanDer.add(T,cal.drawIdealGas(1, p, T));
-				}
+					//series_vanDer.add(T,cal.drawIdealGas(1, p, T));
+				} 
 				break;
 			case "w(m/s)":
 				lineChart.getTitle().setText("w关于T的函数");

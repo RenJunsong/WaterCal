@@ -65,7 +65,7 @@ public class Calculator {
 		}
 		switch (x) {
 		case 1:
-			result = pro.g_pT(p, T) * 0.01801528 + 0.0821850173;
+			result = pro.g_pT(p, T) * 0.01801528 ;// + 0.0821850173;
 			break;
 		case 2:
 			result = pro.w_pT(p, T);
@@ -115,7 +115,7 @@ public class Calculator {
 		sbAll.append("\n" + "自由能修正g=  ");
 		sbAll.append(sci(pro.g_pT(p, T) * 0.01801528 + 0.0821850173)).append("   kJ/mol");
 		sbAll.append("\n" + "理想气体自由能g=  ");
-		sbAll.append(sci(ideal.Idealg_pT(p, T))).append("   kJ/mol");
+		sbAll.append(sci(ideal.Idealg_pT(p, T)+2441.7418* 0.01801528)).append("   kJ/mol");
 		// sbAll.append("\n" + "自由能g= ");
 		// sbAll.append(sci(pro.g_pT(p, T))).append(" kJ/kg");
 		sbAll.append("\n" + "自由能未修正g=  ");
