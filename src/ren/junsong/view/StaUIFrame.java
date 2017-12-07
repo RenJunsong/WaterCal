@@ -523,7 +523,7 @@ public class StaUIFrame extends JFrame {
 		}
 		Calculator cal=new Calculator();
 		if (labelp_T1.getText().equals("p(Mpa)")) {
-			XYSeries series = new XYSeries("s=f(p,T)");
+			XYSeries series = new XYSeries("real");
 			XYSeries series_ideal = new XYSeries("ideal gas");
 			XYSeries series_vanDer = new XYSeries("vanDer gas");
 			double p = Double.parseDouble(text2.getText());
@@ -537,7 +537,7 @@ public class StaUIFrame extends JFrame {
 						.parseDouble(text4.getText()); T += Double.parseDouble(text5.getText())) {
 					series.add(T,cal.drawRegion(1, p, T));
 					series_ideal.add(T,cal.drawIdealGas(0, p, T));
-					//series_vanDer.add(T,cal.drawIdealGas(1, p, T));
+					series_vanDer.add(T,cal.drawIdealGas(1, p, T));
 				} 
 				break;
 			case "w(m/s)":
@@ -602,7 +602,9 @@ public class StaUIFrame extends JFrame {
 			dataset.addSeries(series);
 
 		} else if (labelp_T1.getText().equals("T(K)")) {
-			XYSeries series = new XYSeries("s=f(p,T)");
+			XYSeries series = new XYSeries("real");
+			XYSeries series_ideal = new XYSeries("ideal gas");
+			XYSeries series_vanDer = new XYSeries("vanDer gas");
 			double T = Double.parseDouble(text2.getText());
 			switch (labeltarget.getText()) {
 
@@ -613,6 +615,8 @@ public class StaUIFrame extends JFrame {
 				for (double p = Double.parseDouble(text3.getText()); p < Double
 						.parseDouble(text4.getText()); p += Double.parseDouble(text5.getText())) {
 					series.add(p,cal.drawRegion(1, p, T));
+					series_ideal.add(p,cal.drawIdealGas(0, p, T));
+					series_vanDer.add(p,cal.drawIdealGas(1, p, T));
 				}
 				break;
 			case "w(m/s)":
@@ -671,7 +675,8 @@ public class StaUIFrame extends JFrame {
 				break;
 			}
 
-		//	dataset.addSeries(series_ideal);
+			dataset.addSeries(series_vanDer);
+			dataset.addSeries(series_ideal);
 			dataset.addSeries(series);
 		} else {
 			System.out.println("´òÈÅÁË");

@@ -1,6 +1,9 @@
 package ren.junsong.util;
 
 public class ConstantForCal {
+	public static final double a=5.51/10;
+	public static final double b=0.0304/1000;
+	public static final double R0=8.314;  //J/mol/k  
 	public static final double R = 0.461526; // kJ/(kg K)
 	// Ò»Çø
 	public static final double[] I1 = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3,
