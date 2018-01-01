@@ -21,8 +21,10 @@ public class VanDerWaalsEq {
 		-(a0*T0-a0*T0*Math.log(T0)-0.5*a1*T0*T0-1/6*a2*Math.pow(T0, 3)-1/12*a3*Math.pow(T0, 4));
 		double[] temp=info(p0*1000*1000,T);
 		System.out.println("前两项="+g);
+		double gtemp=g-ConstantForCal.R0*T*Math.log((info[1]-ConstantForCal.b)/(temp[1]-ConstantForCal.b))-ConstantForCal.a/info[1]+ConstantForCal.a/temp[1];
 		g=g+(-2*ConstantForCal.a/info[1]-ConstantForCal.R0*T*Math.log(info[1]-ConstantForCal.b)+ConstantForCal.b*ConstantForCal.R*T/(info[1]-ConstantForCal.b));
 		g=g-(-2*ConstantForCal.a/temp[1]-ConstantForCal.R0*T*Math.log(temp[1]-ConstantForCal.b)+ConstantForCal.b*ConstantForCal.R*T/(temp[1]-ConstantForCal.b));
+		System.out.println(g-gtemp);
 		System.out.println("Tc="+8*ConstantForCal.a/(27*ConstantForCal.R0*ConstantForCal.b));
 		System.out.println("所有项"+g);
 		return g/1000+g0;

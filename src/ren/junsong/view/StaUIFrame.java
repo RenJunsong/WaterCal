@@ -80,6 +80,7 @@ public class StaUIFrame extends JFrame {
 	private JTextField text4;
 	private JLabel lblNewLabel_3;
 	private JTextField text5;
+	private JTextField text6;
 
 	/**
 	 * Create the frame.
@@ -266,6 +267,19 @@ public class StaUIFrame extends JFrame {
 		});
 		btn2.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 15));
 		btn2.setBounds(31, 314, 148, 39);
+		
+		JButton btn3 = new JButton("\u8BA1\u7B97T_p\u51FD\u6570");
+		btn3.setBounds(185, 392, 129, 27);
+		btn3.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 15));
+		btn3.setBackground(ConstantForUI.COM_COLOR);
+		UtilForUI.glorifycal(btn3);
+		btn3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lineChart.getXYPlot().setDataset(createXYSeriesCollection());
+				
+			}
+		});
+		
 		contentPane.add(btn2);
 
 		contentPane.setLayout(null);
@@ -301,6 +315,21 @@ public class StaUIFrame extends JFrame {
 		contentPane.add(lblNewLabel_3);
 
 		contentPane.add(text5);
+		
+		
+		contentPane.add(btn3);
+		
+		text6 = new JTextField();
+		text6.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 15));
+		text6.setColumns(10);
+		text6.setBackground(new Color(235, 235, 235));
+		text6.setBounds(104, 392, 77, 25);
+		contentPane.add(text6);
+		
+		JLabel lblg = new JLabel("\u8F93\u5165g:");
+		lblg.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
+		lblg.setBounds(31, 394, 77, 21);
+		contentPane.add(lblg);
 
 		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { chartPanel, labelAll, label1,
 				label2, label3, text1, labelRegion1, labelRegion2, labelRegion5, btn1, labelRegion0, labelRegion3,
@@ -517,6 +546,19 @@ public class StaUIFrame extends JFrame {
 
 	private XYSeriesCollection createXYSeriesCollection() {
 		XYSeriesCollection dataset = new XYSeriesCollection();
+		if(text6!= null&&text6.getText().length()>=1){
+			Calculator cal_g=new Calculator();
+			double g=Double.parseDouble(text6.getText());
+			XYSeries series_p = new XYSeries("T_p");
+			lineChart.getTitle().setText("p关于T的函数");
+			lineChart.getXYPlot().getRangeAxis().setLabel("p(Mpa)");
+			lineChart.getXYPlot().getDomainAxis().setLabel("T(K)");
+			for (double T=273.15;T<750; T += 1) {
+				series_p.add(T, cal_g.p_gT(g, T));
+			}
+			dataset.addSeries(series_p);
+			return dataset;
+		}
 		if (!UtilForUI.checkNum(text2.getText()) && !UtilForUI.checkNum(text3.getText())
 				&& !UtilForUI.checkNum(text4.getText()) && !UtilForUI.checkNum(text5.getText())) {
 			JOptionPane.showMessageDialog(null, "请检查输入内容是否为数字");
@@ -675,8 +717,8 @@ public class StaUIFrame extends JFrame {
 				break;
 			}
 
-			dataset.addSeries(series_vanDer);
-			dataset.addSeries(series_ideal);
+		//	dataset.addSeries(series_vanDer);
+		//	dataset.addSeries(series_ideal);
 			dataset.addSeries(series);
 		} else {
 			System.out.println("打扰了");

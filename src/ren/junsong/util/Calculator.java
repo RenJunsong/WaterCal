@@ -25,7 +25,10 @@ public class Calculator {
 	public Calculator() {
 		super();
 	}
-
+	public double p_gT(double g,double T){
+		PT_g pt_g=new PT_g();
+		return pt_g.p_gT(g, T);
+	}
 	public double drawRegion(int x, double p, double T) {
 		double result = 0;
 		int drawregion = CheckRegion.checkp_T(p, T);
